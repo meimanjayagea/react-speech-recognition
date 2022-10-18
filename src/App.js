@@ -4,7 +4,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 
 function App() {
-  const { transcript, resetTranscript } = useSpeechRecognition();
+  const { transcript, resetTranscript, interimTranscript, finalTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   return (
     <div className="App">
@@ -28,6 +28,10 @@ function App() {
         Reset
       </button>
       <p>{transcript}</p>
+      <p>interimTranscript : {interimTranscript}</p>
+      <p>finalTranscript : {finalTranscript}</p>
+      <p>listening : {`${listening}`}</p>
+      <p>browserSupportsSpeechRecognition : {`${browserSupportsSpeechRecognition}`}</p>
     </div>
   );
 }
