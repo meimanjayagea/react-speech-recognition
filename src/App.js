@@ -4,6 +4,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import useInterval from "@use-it/interval";
 import { useState } from "react";
+import { useSpeechSynthesis } from "react-webspeech";
 
 function App() {
   const {
@@ -17,6 +18,7 @@ function App() {
   const [index, setIndex] = useState(0);
   const [word, setWord] = useState("");
   const [intv, setIntv] = useState(undefined);
+  const { speak, voices  } = useSpeechSynthesis();
 
   useInterval(() => {
     setWord(transcript.slice(index, transcript.length));
@@ -40,10 +42,10 @@ function App() {
         Stop Berbicara
       </button>
       <button onClick={() => resetTranscript()}>Reset</button>
+      <button onClick={() => speak({ word, voices: voices[5]})}>Speek</button>
+      {voices.map(item => <span>{item.name}</span>)}
       <p>{word.split(" ").length}</p>
 
-      <br />
-      <br />
       <br />
       <br />
       <p>{transcript}</p>
